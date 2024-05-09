@@ -51,7 +51,7 @@ function Play({play, index}){
 
     return (
         <x.div display="grid" justifyContent="center" maxWidth={1120} ml="5" mr="auto" pt={2}>
-            <x.div boxSizing="border-box" h="35" w="800" border={1} p={1} display="flex" justifyContent="space-between" bg="blue-gray-500-a10" onClick={()=>setActive(!active)}>
+            <x.div boxSizing="border-box" h="35" w="800" border={1} p={1} display="flex" justifyContent="space-between" bg="blue-gray-500-a10" onClick={()=>setActive(!active)} cursor="pointer">
                 <div>Play #{index}: {getPlayDescription(play)}</div>
                 <x.div fontWeight="bold">{active? '-' : '+'}</x.div>
             </x.div>

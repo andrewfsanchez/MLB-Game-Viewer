@@ -44,7 +44,7 @@ function Pitch({data, pitch}){
 
 return (
     <x.div bottom={bottomOffset} left={leftOffset} position="absolute" transform translateX={"-50%"} translateY={"50%"}>
-        <x.a w="16px" h="16px" borderRadius="50%" display="inline-flex" background={color} fontSize="12px" textAlign="center" color="white" justifyContent="center">
+        <x.a w="16px" h="16px" borderRadius="50%" display="inline-flex" background={color} fontSize="12px" textAlign="center" color="white" justifyContent="center" opacity={{_:'1', hover:'0.7'}} cursor="pointer">
             {pitch}
         </x.a>
         
