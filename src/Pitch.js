@@ -15,6 +15,21 @@
 
 import { x } from '@xstyled/styled-components'
 
+const getColor = (pitchResult) => {
+    switch(pitchResult) {
+        case "B": //ball
+            return "green"
+        case "C": //called strike
+            return "yellow"
+        case "F": //foul
+            return "yellow"
+        case "X": //in play w/ outs
+            return "red"
+        default: //any hit
+            return "blue"
+    }
+}
+
 function Pitch({data, pitch}){
     if(!data.coordinates.pZ){
         return(null);
@@ -23,11 +38,13 @@ function Pitch({data, pitch}){
     const bottomOffset=`${50+((data.coordinates.pZ- ((data.strikeZoneTop + data.strikeZoneBottom)/2))*(30/(((data.strikeZoneTop + data.strikeZoneBottom)/2)-data.strikeZoneBottom)))}%`;
     const leftOffset=`${50-(data.coordinates.pX *(30/0.708))}%`;
 
-    
+    const color = getColor(data.result);
+
+    console.log(color)
 
 return (
     <x.div bottom={bottomOffset} left={leftOffset} position="absolute" transform translateX={"-50%"} translateY={"50%"}>
-        <x.a w="16px" h="16px" borderRadius="50%" display="inline-flex" background="green" fontSize="12px" textAlign="center" color="white" justifyContent="center">
+        <x.a w="16px" h="16px" borderRadius="50%" display="inline-flex" background={color} fontSize="12px" textAlign="center" color="white" justifyContent="center">
             {pitch}
         </x.a>
         

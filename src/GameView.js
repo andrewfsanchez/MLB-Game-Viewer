@@ -12,10 +12,8 @@ async function getGameData(url){
     
     for (const [key, val] of Object.entries(json.liveData.plays.allPlays)) {
         if(val.result.type !== "atBat"){
-            console.log(val.reult.type)
         }
 
-        console.log(key)
         // TODO: fix this to work with running events
         const allEvents = []
         for(let i = 0; i<val.playEvents.length; i++){
