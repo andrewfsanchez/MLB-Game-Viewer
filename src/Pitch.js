@@ -23,6 +23,8 @@ const getColor = (pitchResult) => {
             return "yellow"
         case "F": //foul
             return "yellow"
+        case "S": //swing strike
+            return "yellow"
         case "X": //in play w/ outs
             return "red"
         default: //any hit
