@@ -25,7 +25,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Preflight />
-      <h1>My app</h1>
       <div className='calendar-container'>
         <Calendar onChange={(v) =>{setDate(v); navigate('/schedule')}} value={date} />
       </div>

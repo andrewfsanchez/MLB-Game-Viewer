@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import Inning from './Inning'
+import BoxScore from './BoxScore'
+
 
 const gameURL = (gamepk) => "https://statsapi.mlb.com/api/v1.1/game/"+gamepk+"/feed/live";
 
@@ -8,7 +10,9 @@ async function getGameData(url){
     const response = await fetch(url);
     const json = await response.json();
 
-    const game = {plays:{}};
+    const game = {plays:{}, boxScore:{}};
+    
+    game.boxScore = json.liveData.linescore.innings
     
     for (const [key, val] of Object.entries(json.liveData.plays.allPlays)) {
         if(val.result.type !== "atBat"){
@@ -59,11 +63,14 @@ async function getGameData(url){
 
 }
 
+
 const displayGame = (game) => {
 
     const playsByInning= []
     let plays=[]
     let inning = {number: 1, isTopInning: true}
+
+    
 
     for(const [key, val] of Object.entries(game.plays)) {
         if(val.inning.number !== inning.number || val.inning.isTopInning !== inning.isTopInning) {
@@ -116,6 +123,7 @@ function GameView(){
     return (
         <div>
             <button onClick={()=>backToCalendar()}>Back to Schedule</button>
+            <BoxScore boxScore={game.boxScore}></BoxScore>
             {displayGame(game)}
         </div>
     )
