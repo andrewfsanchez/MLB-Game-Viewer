@@ -40,13 +40,9 @@ function Pitch({data, pitch}){
     const bottomOffset=`${50+((data.coordinates.pZ- ((data.strikeZoneTop + data.strikeZoneBottom)/2))*(30/(((data.strikeZoneTop + data.strikeZoneBottom)/2)-data.strikeZoneBottom)))}%`;
     const leftOffset=`${50-(data.coordinates.pX *(30/0.708))}%`;
 
-    const color = getColor(data.result);
-
-    console.log(color)
-
 return (
     <x.div bottom={bottomOffset} left={leftOffset} position="absolute" transform translateX={"-50%"} translateY={"50%"}>
-        <x.a w="16px" h="16px" borderRadius="50%" display="inline-flex" background={color} fontSize="12px" textAlign="center" justifyContent="center" opacity={{_:'1', hover:'0.7'}} cursor="pointer">
+        <x.a w="16px" h="16px" borderRadius="50%" display="inline-flex" background={getColor(data.result)} fontSize="12px" textAlign="center" justifyContent="center" opacity={{_:'1', hover:'0.7'}} cursor="pointer">
             {pitch}
         </x.a>
         

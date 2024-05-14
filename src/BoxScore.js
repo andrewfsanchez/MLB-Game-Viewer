@@ -1,9 +1,9 @@
 import { x } from '@xstyled/styled-components'
 
 const displayBoxScore = (boxScore) => {
-    const header = [<x.th></x.th>]
-    const away=[<x.th>Away Team</x.th>]
-    const home=[<x.th>Home Team</x.th>]
+    const header = [<x.th border={2}></x.th>]
+    const away=[<x.th border={2}>Away Team</x.th>]
+    const home=[<x.th border={2}>Home Team</x.th>]
 
     let awayRuns=0;
     let homeRuns=0;
@@ -14,9 +14,9 @@ const displayBoxScore = (boxScore) => {
 
     let inning=1;
     for(const [key, val] of Object.entries(boxScore)) {
-        header.push(<x.th>{inning}</x.th>)
-        away.push(<x.td>{val.away.runs}</x.td>)
-        home.push(<x.td>{val.home.runs}</x.td>)
+        header.push(<x.th border={2} textAlign="center">{inning}</x.th>)
+        away.push(<x.td border={2} textAlign="center">{val.away.runs}</x.td>)
+        home.push(<x.td border={2} textAlign="center">{val.home.runs}</x.td>)
 
         inning= inning+1
 
@@ -29,12 +29,12 @@ const displayBoxScore = (boxScore) => {
 
     }
 
-    header.push([<x.th>R</x.th>, <x.th>H</x.th>, <x.th>E</x.th>])
-    away.push([<x.td>{awayRuns}</x.td>, <x.td>{awayHits}</x.td>, <x.td>{awayErrors}</x.td>])
-    home.push([<x.td>{homeRuns}</x.td>, <x.td>{homeHits}</x.td>, <x.td>{homeErrors}</x.td>])
+    header.push([<x.th border={2}>R</x.th>, <x.th border={2}>H</x.th>, <x.th border={2}>E</x.th>])
+    away.push([<x.td border={2} textAlign="center">{awayRuns}</x.td>, <x.td border={2} textAlign="center">{awayHits}</x.td>, <x.td border={2} textAlign="center">{awayErrors}</x.td>])
+    home.push([<x.td border={2} textAlign="center">{homeRuns}</x.td>, <x.td border={2} textAlign="center">{homeHits}</x.td>, <x.td border={2} textAlign="center">{homeErrors}</x.td>])
 
     return (
-        <x.table>
+        <x.table width="800" border={2} borderCollapse="collapse">
             <x.thead>
                 <x.tr>
                     {header}
@@ -55,9 +55,9 @@ const displayBoxScore = (boxScore) => {
 
 function BoxScore({boxScore}) {
     return (
-        <div>
+        <x.div display="grid" justifyContent="center" ml="auto" mr="auto" pb={2}>
             {displayBoxScore(boxScore)}
-        </div>
+        </x.div>
     )
 }
 

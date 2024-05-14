@@ -5,6 +5,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import {useNavigate} from 'react-router-dom';
 import {useState} from 'react';
+import { x } from '@xstyled/styled-components'
 
 
 import {
@@ -25,9 +26,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Preflight />
-      <div className='calendar-container'>
+      <x.div position="absolute">
         <Calendar onChange={(v) =>{setDate(v); navigate('/schedule')}} value={date} />
-      </div>
+      </x.div>
       <Routes>
         <Route path="/schedule" element={<Schedule date={date}/>}/>
         <Route path="/game/:gamepk" element={<GameView/>}/>
