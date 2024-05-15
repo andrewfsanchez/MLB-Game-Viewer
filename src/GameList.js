@@ -19,7 +19,7 @@ function GameList({games}) {
     let navigate = useNavigate();
 
     const onGameSelect = (gamepk) => {
-        navigate('/game/'+gamepk);
+        navigate('MLB/game/'+gamepk);
     }
 
     return (
