@@ -30,9 +30,9 @@ function App() {
         <Calendar onChange={(v) =>{setDate(v); navigate('/schedule')}} value={date} />
       </x.div>
       <Routes>
-        <Route path="/schedule" element={<Schedule date={date}/>}/>
-        <Route path="/game/:gamepk" element={<GameView/>}/>
-        <Route path='*' element={<Navigate to="/schedule"/>}/>
+        <Route path="MLB/schedule" element={<Schedule date={date}/>}/>
+        <Route path="MLB/game/:gamepk" element={<GameView/>}/>
+        <Route path='*' element={<Navigate to="MLB/schedule"/>}/>
       </Routes>
     </ThemeProvider>
   );

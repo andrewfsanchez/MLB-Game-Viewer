@@ -1,14 +1,18 @@
 import Pitch from './Pitch.js'
+import PitchInfo from './PitchInfo.js'
 import { x } from '@xstyled/styled-components'
 import {useState} from 'react'
 import Zone from './img/zone.png'
 
 const displayPlayEvents = (events) => {
-    const ret = []
+    const pitchPlot = []
+    const pitchInfo =[]
+
     let pitchNum=1;
     events.forEach(event => {
         if(event.isPitch){
-            ret.push(<Pitch data={event} pitch={pitchNum}></Pitch>)
+            pitchPlot.push(<Pitch data={event} pitch={pitchNum}></Pitch>)
+            pitchInfo.push(<PitchInfo data={event} pitch={pitchNum}></PitchInfo>)
             pitchNum=pitchNum+1;
         } else if(event.isBaseRunningPlay) {
             
@@ -30,9 +34,14 @@ const displayPlayEvents = (events) => {
 
     return (
         <x.div ml="auto" mr="auto" position="relative">
-        <x.div borderCollapse="collapse" border borderColor="black" style={styles} >
-            {ret}
+        <x.div ml="auto" mr="auto" position="relative" pt={3}>
+            <x.div borderCollapse="collapse" border borderColor="black" style={styles}>
+                {pitchPlot}
+            </x.div> 
         </x.div>
+        <x.table borderCollapse="collapse" border={1} marginTop={3}>
+        {pitchInfo}
+        </x.table>
         </x.div>
     )
     
@@ -42,7 +51,9 @@ const getPlayDescription = (play) => {
     const batter = play.batter.name
     const pitcher = play.pitcher.name
 
-    return batter + ' ' + play.result
+    const description = play.result ? ` - ${play.result}` : " to Bat"
+
+    return batter + description
 }
 
 

@@ -47,17 +47,10 @@ return (
         <x.a w="16px" h="16px" borderRadius="50%" display="inline-flex" background={getColor(data.result)} fontSize="12px" textAlign="center" justifyContent="center" opacity={{_:'1', hover:'0.7'}} cursor="pointer">
             {pitch}
         </x.a>
-        
     </x.div>
 )
 
-return (
-    <x.tr>
-        <x.td textAlign="center" border borderColor="black">
-            Pitch: {data.type}, Speed: {data.speed} MPH, Result:{data.result}
-        </x.td>
-    </x.tr>
-    )
+
 }
 
 export default Pitch
