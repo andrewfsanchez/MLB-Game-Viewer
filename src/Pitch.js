@@ -19,6 +19,8 @@ const getColor = (pitchResult) => {
     switch(pitchResult) {
         case "B": //ball
             return "green"
+        case "*B": //ball
+            return "green"
         case "C": //called strike
             return "yellow"
         case "F": //foul

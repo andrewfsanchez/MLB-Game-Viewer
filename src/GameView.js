@@ -10,7 +10,7 @@ async function getGameData(url){
     const response = await fetch(url);
     const json = await response.json();
 
-    const game = {plays:{}, boxScore:{}};
+    const game = {plays:{}, boxScore:{}, away:json.gameData.teams.away.name, home:json.gameData.teams.home.name};
     
     game.boxScore = json.liveData.linescore.innings
     
@@ -123,7 +123,7 @@ function GameView(){
     return (
         <div>
             <button onClick={()=>backToCalendar()}>Back to Schedule</button>
-            <BoxScore boxScore={game.boxScore}></BoxScore>
+            <BoxScore boxScore={game.boxScore} away={game.away} home={game.home}></BoxScore>
             {displayGame(game)}
         </div>
     )

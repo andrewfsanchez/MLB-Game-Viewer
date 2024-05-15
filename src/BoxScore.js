@@ -1,9 +1,9 @@
 import { x } from '@xstyled/styled-components'
 
-const displayBoxScore = (boxScore) => {
+const displayBoxScore = (boxScore, awayTeam, homeTeam) => {
     const header = [<x.th border={2}></x.th>]
-    const away=[<x.th border={2}>Away Team</x.th>]
-    const home=[<x.th border={2}>Home Team</x.th>]
+    const away=[<x.th border={2}>{awayTeam}</x.th>]
+    const home=[<x.th border={2}>{homeTeam}</x.th>]
 
     let awayRuns=0;
     let homeRuns=0;
@@ -13,6 +13,7 @@ const displayBoxScore = (boxScore) => {
     let homeErrors=0;
 
     let inning=1;
+
     for(const [key, val] of Object.entries(boxScore)) {
         header.push(<x.th border={2} textAlign="center">{inning}</x.th>)
         away.push(<x.td border={2} textAlign="center">{val.away.runs}</x.td>)
@@ -20,7 +21,7 @@ const displayBoxScore = (boxScore) => {
 
         inning= inning+1
 
-        awayRuns= awayRuns+val.away.runs
+        awayRuns= val.away.runs ? awayRuns+val.away.runs : awayRuns
         homeRuns= val.home.runs ? homeRuns+val.home.runs : homeRuns
         awayHits= awayHits+val.away.hits
         homeHits= homeHits+val.home.hits
@@ -53,10 +54,10 @@ const displayBoxScore = (boxScore) => {
     )
 }
 
-function BoxScore({boxScore}) {
+function BoxScore({boxScore, away, home}) {
     return (
         <x.div display="grid" justifyContent="center" ml="auto" mr="auto" pb={2}>
-            {displayBoxScore(boxScore)}
+            {displayBoxScore(boxScore, away, home)}
         </x.div>
     )
 }
