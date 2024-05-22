@@ -33,15 +33,15 @@ const displayPlayEvents = (events) => {
     
 
     return (
-        <x.div ml="auto" mr="auto" position="relative">
-        <x.div ml="auto" mr="auto" position="relative" pt={3}>
-            <x.div borderCollapse="collapse" border borderColor="black" style={styles}>
-                {pitchPlot}
-            </x.div> 
-        </x.div>
-        <x.table borderCollapse="collapse" border={1} marginTop={3}>
-        {pitchInfo}
-        </x.table>
+        <x.div>
+            <x.div pt={3}>
+                <x.div borderCollapse="collapse" ml="auto" mr="auto" border borderColor="black" style={styles} position="relative">
+                    {pitchPlot}
+                </x.div> 
+            </x.div>
+            <x.table borderCollapse="collapse" ml="auto" mr="auto" border={1} marginTop={3} w="153">
+                {pitchInfo}
+            </x.table>
         </x.div>
     )
     
@@ -61,8 +61,8 @@ function Play({play, index}){
     const [active, setActive] = useState(false);
 
     return (
-        <x.div display="grid" justifyContent="center" maxWidth={1120} ml="5" mr="auto" pt={2}>
-            <x.div boxSizing="border-box" h="35" w="800" border={1} p={1} display="flex" justifyContent="space-between" bg="blue-gray-500-a10" onClick={()=>setActive(!active)} cursor="pointer">
+        <x.div boxSizing="border-box" justifyContent="center"  pt={2}>
+            <x.div boxSizing="border-box" h="35" w="45%" ml="20%" border={1} p={1} display="flex" justifyContent="space-between" bg="blue-gray-500-a10" onClick={()=>setActive(!active)} cursor="pointer">
                 <div>Play #{index}: {getPlayDescription(play)}</div>
                 <x.div fontWeight="bold">{active? '-' : '+'}</x.div>
             </x.div>

@@ -18,8 +18,8 @@ function Inning({plays, inning}){
     const [active, setActive] = useState(false);
 
     return (
-        <x.div display="grid" justifyContent="center" maxWidth={1120} ml="auto" mr="auto" pb={2}>
-            <x.div boxSizing="border-box" h={35} w="1000" border={1} p={2} display="flex" justifyContent="space-between" bg="blue-gray-500-a25" onClick={()=>setActive(!active)} cursor="pointer">
+        <x.div boxSizing="border-box" justifyContent="center" pb={2}>
+            <x.div h={35} w="65%" border={1} p={2} ml="auto" mr="auto" display="flex" justifyContent="space-between" bg="blue-gray-500-a25" onClick={()=>setActive(!active)} cursor="pointer">
                 <div>{inning.number} {inning.isTopInning ? "top" : "bottom"}</div>
                 <x.div fontWeight="bold">{active? '-' : '+'}</x.div>
             </x.div>

@@ -42,7 +42,7 @@ const displayBoxScore = (boxScore, awayTeam, homeTeam) => {
     home.push([<x.td border={2} textAlign="center">{homeRuns}</x.td>, <x.td border={2} textAlign="center">{homeHits}</x.td>, <x.td border={2} textAlign="center">{homeErrors}</x.td>])
 
     return (
-        <x.table width="800" borderCollapse="collapse">
+        <x.table width="40%" borderCollapse="collapse" ml="auto" mr="auto">
             <x.thead>
                 <x.tr>
                     {header}
@@ -63,7 +63,7 @@ const displayBoxScore = (boxScore, awayTeam, homeTeam) => {
 
 function BoxScore({boxScore, away, home}) {
     return (
-        <x.div display="grid" justifyContent="center" ml="auto" mr="auto" pb={2}>
+        <x.div boxSizing="border-box" justifyContent="center" pb={2}>
             {displayBoxScore(boxScore, away, home)}
         </x.div>
     )
