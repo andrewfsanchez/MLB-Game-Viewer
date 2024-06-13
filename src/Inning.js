@@ -19,7 +19,7 @@ function Inning({plays, inning}){
 
     return (
         <x.div boxSizing="border-box" justifyContent="center" pb={2}>
-            <x.div h={35} w="65%" border={1} p={2} ml="auto" mr="auto" display="flex" justifyContent="space-between" bg="blue-gray-500-a25" onClick={()=>setActive(!active)} cursor="pointer">
+            <x.div h={35} w={{xs: "85%", md:"65%"}} border={1} p={2} ml="auto" mr="auto" display="flex" justifyContent="space-between" bg="blue-gray-500-a25" onClick={()=>setActive(!active)} cursor="pointer">
                 <div>{inning.number} {inning.isTopInning ? "top" : "bottom"}</div>
                 <x.div fontWeight="bold">{active? '-' : '+'}</x.div>
             </x.div>

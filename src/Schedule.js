@@ -1,4 +1,5 @@
 import {useState, useRef, useEffect} from 'react';
+import { x } from '@xstyled/styled-components'
 import GameList from './GameList';
 
 const formatDate = (date) => {
@@ -104,9 +105,9 @@ function Schedule({date}) {
 
     return (
         <div>
-            <p className='text-center'>
-                <span className='bold'>Selected Date:</span> {dateToString(date)}
-            </p>
+            <x.p textAlign="center">
+                <span className='bold'>Games played on:</span> {dateToString(date)}
+            </x.p>
             <GameList games={games[dateToString(date)]}/>
         </div>
     )

@@ -62,7 +62,7 @@ function Play({play, index}){
 
     return (
         <x.div boxSizing="border-box" justifyContent="center"  pt={2}>
-            <x.div boxSizing="border-box" h="35" w="45%" ml="20%" border={1} p={1} display="flex" justifyContent="space-between" bg="blue-gray-500-a10" onClick={()=>setActive(!active)} cursor="pointer">
+            <x.div boxSizing="border-box" h="35" w={{xs:"80%", md:"45%"}} ml={{xs:"10%",md:"20%"}} border={1} p={1} display="flex" justifyContent="space-between" bg="blue-gray-500-a10" onClick={()=>setActive(!active)} cursor="pointer">
                 <div>Play #{index}: {getPlayDescription(play)}</div>
                 <x.div fontWeight="bold">{active? '-' : '+'}</x.div>
             </x.div>

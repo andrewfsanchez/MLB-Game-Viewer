@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
+import { x } from '@xstyled/styled-components'
+
 import Inning from './Inning'
 import BoxScore from './BoxScore'
 
@@ -121,11 +123,11 @@ function GameView(){
     }
 
     return (
-        <div>
-            <button onClick={()=>backToCalendar()}>Back to Schedule</button>
+        <x.div>
+            <x.button display="flex" ml="auto" mr="auto" onClick={()=>backToCalendar()} >Back to Schedule</x.button>
             <BoxScore boxScore={game.boxScore} away={game.away} home={game.home}></BoxScore>
             {displayGame(game)}
-        </div>
+        </x.div>
     )
 }
 
