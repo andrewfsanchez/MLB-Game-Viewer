@@ -28,9 +28,11 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Preflight />
-      <x.div position={{xs:"relative", md:"absolute"}} display="flex" ml="auto" mr="auto" justifyContent="center">
-        {active && <Calendar onChange={(v) =>{setDate(v); navigate('/schedule'); setActive(false)}} value={date} />}
-        {!active && <img src={Icon} onClick={()=>setActive(true)}/>}
+      <x.div position="sticky" backgroundColor="white" display="flex" top={0} boxSizing={"border-box"} borderBottomColor="#313238" borderBottom="1">
+        <x.div ml="5%">
+          {active && <Calendar onChange={(v) =>{setDate(v); navigate('/schedule'); setActive(false)}} value={date} />}
+          {!active && <img src={Icon} onClick={()=>setActive(true)}/>}
+        </x.div>
       </x.div>
       <Routes>
         <Route path="MLB/schedule" element={<Schedule date={date}/>}/>
