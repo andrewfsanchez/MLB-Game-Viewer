@@ -20,25 +20,30 @@ const theme = {
   ...defaultTheme
 }
 
+
 function App() {
   const [active, setActive] = useState(false);
   const [date, setDate] = useState(()=>{console.log('start'); return new Date();});
   let navigate = useNavigate();
 
+  document.body.style.backgroundColor = "#222"
+
   return (
     <ThemeProvider theme={theme}>
       <Preflight />
-      <x.div position="sticky" backgroundColor="white" display="flex" top={0} boxSizing={"border-box"} borderBottomColor="#313238" borderBottom="1">
+      <x.div position="sticky" backgroundColor="rgba(24,26,27,1)" display="flex" top={0} boxSizing={"border-box"} borderBottomColor="#313238" borderBottom="1">
         <x.div ml="5%">
           {active && <Calendar onChange={(v) =>{setDate(v); navigate('/schedule'); setActive(false)}} value={date} />}
           {!active && <img src={Icon} onClick={()=>setActive(true)}/>}
         </x.div>
       </x.div>
-      <Routes>
-        <Route path="MLB/schedule" element={<Schedule date={date}/>}/>
-        <Route path="MLB/game/:gamepk" element={<GameView/>}/>
-        <Route path='*' element={<Navigate to="MLB/schedule"/>}/>
-      </Routes>
+      <x.div backgroundColor={"rgba(24,26,27,1)"} color="white">
+        <Routes>
+          <Route path="MLB/schedule" element={<Schedule date={date}/>}/>
+          <Route path="MLB/game/:gamepk" element={<GameView/>}/>
+          <Route path='*' element={<Navigate to="MLB/schedule"/>}/>
+        </Routes>
+      </x.div>
     </ThemeProvider>
   );
 }
