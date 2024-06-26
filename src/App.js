@@ -33,9 +33,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Preflight />
-      <x.div position="sticky" backgroundColor="rgba(24,26,27,1)" display="flex" top={0} boxSizing={"border-box"} borderBottomColor="#313238" borderBottom="1">
+      <x.div onClick={()=>setActive(false)} position="sticky" backgroundColor="rgba(24,26,27,1)" display="flex" top={0} boxSizing={"border-box"} borderBottomColor="#313238" borderBottom="1">
         <x.div ml="5%">
-          <img src={Icon} onClick={()=>{setActive(true)}}/>
+          <img src={Icon} onClick={(e)=>{setActive(!active); e.stopPropagation()}}/>
         </x.div>
       </x.div>
       <x.div position='relative' backgroundColor={"rgba(24,26,27,1)"} color="white" onClick={()=>setActive(false)}>
