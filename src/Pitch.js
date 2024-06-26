@@ -13,7 +13,7 @@
 
 */
 
-import { x } from '@xstyled/styled-components'
+import { bottom, x } from '@xstyled/styled-components'
 
 const getColor = (pitchResult) => {
     switch(pitchResult) {
@@ -39,8 +39,21 @@ function Pitch({data, pitch}){
         return(null);
     }
 
-    const bottomOffset=`${50+((data.coordinates.pZ- ((data.strikeZoneTop + data.strikeZoneBottom)/2))*(30/(((data.strikeZoneTop + data.strikeZoneBottom)/2)-data.strikeZoneBottom)))}%`;
-    const leftOffset=`${50-(data.coordinates.pX *(30/0.708))}%`;
+    const calcBottomOffset=50+((data.coordinates.pZ- ((data.strikeZoneTop + data.strikeZoneBottom)/2))*(30/(((data.strikeZoneTop + data.strikeZoneBottom)/2)-data.strikeZoneBottom)));
+    const calcLeftOffset=50-(data.coordinates.pX *(30/0.708));
+
+    let bottomOffset = `${calcBottomOffset}%`
+    let leftOffset = `${calcLeftOffset}%`
+
+    if(calcBottomOffset>100)
+        bottomOffset='100%'
+    else if(calcBottomOffset<0)
+        bottomOffset='0%'
+
+    if(calcLeftOffset>100)
+        leftOffset='100%'
+    else if(calcLeftOffset<0)
+        leftOffset='0%'
 
 return (
     <x.div bottom={bottomOffset} left={leftOffset} position="absolute" transform translateX={"-50%"} translateY={"50%"}>
