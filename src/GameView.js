@@ -8,64 +8,6 @@ import BoxScore from './BoxScore'
 
 const gameURL = (gamepk) => "https://statsapi.mlb.com/api/v1.1/game/"+gamepk+"/feed/live";
 
-async function getGameData(url){
-    const response = await fetch(url);
-    const json = await response.json();
-
-    const game = {plays:{}, boxScore:{}, away:json.gameData.teams.away.name, home:json.gameData.teams.home.name};
-    
-    game.boxScore = json.liveData.linescore.innings
-    
-    for (const [key, val] of Object.entries(json.liveData.plays.allPlays)) {
-        if(val.result.type !== "atBat"){
-        }
-
-        // TODO: fix this to work with running events
-        const allEvents = []
-        for(let i = 0; i<val.playEvents.length; i++){
-            if(val.playEvents[i].isPitch){
-                allEvents[i] = 
-                {
-                    isPitch: true,
-                    isBaseRunningPlay: false,
-                    result: val.playEvents[i].details.call.code,
-                    speed: val.playEvents[i].pitchData.startSpeed,
-                    type: val.playEvents[i].details.type ? val.playEvents[i].details.type.code : "unknown",
-                    zone: val.playEvents[i].pitchData.zone,
-                    coordinates: val.playEvents[i].pitchData.coordinates,
-                    strikeZoneTop: val.playEvents[i].pitchData.strikeZoneTop,
-                    strikeZoneBottom: val.playEvents[i].pitchData.strikeZoneBottom
-                }
-            } else if (val.playEvents[i].isBaseRunningPlay){
-                allEvents[i] = 
-                {
-                    isPitch: false,
-                    isBaseRunningPlay: true,
-                    isOut: val.playEvents[i].details.isOut,
-                    isScoringPlay: val.playEvents[i].details.isScoringPlay,
-                    runner: val.playEvents[i].player.id,
-                    eventType: val.eventType
-                }
-            }
-        }
-
-        game.plays[key]={
-            inning: {number: val.about.inning, isTopInning:val.about.isTopInning},
-            type: val.result.type,
-            result: val.result.event,
-            count: val.count,
-            events: allEvents,
-            batter: {name: val.matchup.batter.fullName, id: val.matchup.batter.id},
-            pitcher: {name: val.matchup.pitcher.fullName, id: val.matchup.pitcher.id}
-        }
-    }
-
-
-    return game;
-
-}
-
-
 const displayGame = (game) => {
 
     const playsByInning= []
@@ -95,22 +37,71 @@ function GameView(){
     let {gamepk} = useParams();
     let navigate = useNavigate();
 
-    useEffect(() => {
-        let active = true;
-        if(!game) {
-            const url = gameURL(gamepk);
-            getGameData(url).then(info=>{
-                if(active){
-                    setLoading(false);
-                    setGame(info);
-                }
-            })
-        } else {
-            setLoading(false);
-        }
 
-        return () => {active = false;}
-    },[game,gamepk])
+    const getGameData = async (url) => {
+        const response = await fetch(url);
+        const json = await response.json();
+    
+        const game = {plays:{}, boxScore:{}, away:json.gameData.teams.away.name, home:json.gameData.teams.home.name};
+        
+        game.boxScore = json.liveData.linescore.innings
+        
+        for (const [key, val] of Object.entries(json.liveData.plays.allPlays)) {
+            if(val.result.type !== "atBat"){
+            }
+    
+            // TODO: fix this to work with running events
+            const allEvents = []
+            for(let i = 0; i<val.playEvents.length; i++){
+                if(val.playEvents[i].isPitch){
+                    allEvents[i] = 
+                    {
+                        isPitch: true,
+                        isBaseRunningPlay: false,
+                        result: val.playEvents[i].details.call.code,
+                        speed: val.playEvents[i].pitchData.startSpeed,
+                        type: val.playEvents[i].details.type ? val.playEvents[i].details.type.code : "unknown",
+                        zone: val.playEvents[i].pitchData.zone,
+                        coordinates: val.playEvents[i].pitchData.coordinates,
+                        strikeZoneTop: val.playEvents[i].pitchData.strikeZoneTop,
+                        strikeZoneBottom: val.playEvents[i].pitchData.strikeZoneBottom
+                    }
+                } else if (val.playEvents[i].isBaseRunningPlay){
+                    allEvents[i] = 
+                    {
+                        isPitch: false,
+                        isBaseRunningPlay: true,
+                        isOut: val.playEvents[i].details.isOut,
+                        isScoringPlay: val.playEvents[i].details.isScoringPlay,
+                        runner: val.playEvents[i].player.id,
+                        eventType: val.eventType
+                    }
+                }
+            }
+    
+            game.plays[key]={
+                inning: {number: val.about.inning, isTopInning:val.about.isTopInning},
+                type: val.result.type,
+                result: val.result.event,
+                count: val.count,
+                events: allEvents,
+                batter: {name: val.matchup.batter.fullName, id: val.matchup.batter.id},
+                pitcher: {name: val.matchup.pitcher.fullName, id: val.matchup.pitcher.id}
+            }
+        }
+    
+    
+        setGame(game);
+        setLoading(false);
+    
+    }
+
+    useEffect(() => {
+        const url = gameURL(gamepk);
+        getGameData(url)
+        const fetchInterval = setInterval(()=>getGameData(url),20000)
+        return () => clearInterval(fetchInterval)
+    },[])
 
     const backToCalendar = () => {
         navigate('/schedule');
