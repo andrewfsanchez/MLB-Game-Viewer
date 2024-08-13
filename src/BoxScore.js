@@ -42,7 +42,7 @@ const displayBoxScore = (boxScore, awayTeam, homeTeam) => {
     home.push([<x.td border={2} textAlign="center">{homeRuns}</x.td>, <x.td border={2} textAlign="center">{homeHits}</x.td>, <x.td border={2} textAlign="center">{homeErrors}</x.td>])
 
     return (
-        <x.table width="40%" borderCollapse="collapse" ml="auto" mr="auto">
+        <x.table bg='#213a40' width="40%" borderCollapse="collapse" ml="auto" mr="auto">
             <x.thead>
                 <x.tr>
                     {header}
@@ -55,7 +55,6 @@ const displayBoxScore = (boxScore, awayTeam, homeTeam) => {
                 <x.tr>
                     {home}
                 </x.tr>
-                
             </x.tbody>
         </x.table>
     )

@@ -2,7 +2,7 @@ import { x } from '@xstyled/styled-components'
 
 function PitchInfo({data, pitach}) {
     return (
-        <x.tr>
+        <x.tr bg='#213a40'>
             <x.td borderBottom={1}>
                 {data.result}
             </x.td>

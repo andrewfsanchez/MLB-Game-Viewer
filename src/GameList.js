@@ -5,7 +5,7 @@ import { x } from '@xstyled/styled-components'
 function displayGame(game, onGameSelect){
     return (
         <x.div boxSizing="border-box" justifyContent="center" pb={2}>
-            <x.div h={35} w={{xs:"90%",md:"65%"}} border={1} p={2} ml="auto" mr="auto" display="flex" justifyContent="center" bg="blue-gray-500-a10" onClick={() => onGameSelect(game.gamepk)} cursor="pointer">
+            <x.div  h={35} w={{xs:"90%",md:"65%"}} border={1} p={2} ml="auto" mr="auto" display="flex" justifyContent="center"backgroundColor="#213a40"  onClick={() => onGameSelect(game.gamepk)} cursor="pointer">
                 <x.div fontSize={{md:""}}>{game.away} {game.awayScore} @ {game.homeScore} {game.home}</x.div>
             </x.div>
         </x.div>
@@ -19,7 +19,7 @@ function GameList({games}) {
     let navigate = useNavigate();
 
     const onGameSelect = (gamepk) => {
-        navigate('/MLB/game/'+gamepk);
+        navigate('/mlb/game/'+gamepk);
     }
 
     return (
