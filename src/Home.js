@@ -2,7 +2,6 @@ import './Home.css';
 import {useNavigate} from 'react-router-dom';
 import Avatar from './img/Avatar.jpg'
 
-
 function Home() {
 
     let navigate = useNavigate();
@@ -12,7 +11,7 @@ function Home() {
         <div class='home'>
             <nav class="main-nav">
                 <a class="name">Andrew Sanchez</a>
-                <a href="/mlb">MLB Game Viewer</a>
+                <a href="/mlb/schedule">MLB Game Viewer</a>
             </nav>
             <section class="about-me">
                 <img class="avatar" src={Avatar}/>

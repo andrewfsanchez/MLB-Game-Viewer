@@ -30,9 +30,9 @@ function Mlb() {
 
   return (
     <ThemeProvider theme={theme}>
-      <x.img position="sticky" zIndex={1} top={0} src={Icon} alt="Calendar Icon" onClick={(e)=>{setActive(!active); e.stopPropagation()}} bg='#623b32'/>
 
-      <x.div onClick={()=>setActive(false)} display="flex" boxSizing={"border-box"} borderBottom="1" bg='#623b32'>
+      <x.div position='sticky' top={0} zIndex={2} onClick={()=>setActive(false)} display="flex" justifyContent='space-between' boxSizing={"border-box"} borderBottom="1" bg='#623b32'>
+        <x.img top={0} src={Icon} alt="Calendar Icon" onClick={(e)=>{setActive(!active); e.stopPropagation()}} bg='#623b32'/>
         <x.div display="flex" mr="5%" onClick={()=>navigate('/home')} cursor='pointer'>
           About the creator
         </x.div>
