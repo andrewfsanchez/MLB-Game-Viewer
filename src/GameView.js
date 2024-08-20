@@ -115,7 +115,7 @@ function GameView(){
 
     return (
         <x.div>
-            <x.button display="flex" ml="auto" mr="auto" onClick={()=>backToCalendar()} >Back to Schedule</x.button>
+            <x.button marginTop='1rem' marginBottom='.5rem' display="flex" ml="auto" mr="auto" border="rgb(60,65,67)" borderRadius=".5rem" boxSizing="border-box" padding="2" bg="#714136" color="white" onClick={()=>backToCalendar()} >Back to Schedule</x.button>
             <BoxScore boxScore={game.boxScore} away={game.away} home={game.home}></BoxScore>
             {displayGame(game)}
         </x.div>
