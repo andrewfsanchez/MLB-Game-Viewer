@@ -32,7 +32,7 @@ function Mlb() {
     <ThemeProvider theme={theme}>
 
       <x.div position='sticky' top={0} zIndex={2} onClick={()=>setActive(false)} display="flex" justifyContent='space-between' alignItems='center' boxSizing={"border-box"} borderBottom="1" bg='#623b32'>
-        <x.img top={0} src={Icon} alt="Calendar Icon" onClick={(e)=>{setActive(!active); e.stopPropagation()}} bg='#623b32'/>
+        <x.img top={0} src={Icon} alt="Calendar Icon" cursor='pointer' onClick={(e)=>{setActive(!active); e.stopPropagation()}} bg='#623b32'/>
         <x.div display="flex" mr="5%" onClick={()=>navigate('/home')} cursor='pointer' fontFamily={`"Segoe UI", Roboto, Oxygen, sans-serif`} fontSize='18px'>
           About the creator
         </x.div>
